@@ -1,6 +1,7 @@
 package org.jhonatan.sesion06.app.Ejercicio01RegistroEmpleados;
 
 import java.awt.Font;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -64,6 +65,47 @@ public class frmEmpleados extends javax.swing.JFrame {
     void verDatos() {
         String codigo, nombre, sueldo;
         Nodo aux = inicio;
+        num = 0;
+
+        //llamando al metodo del encabezado 
+        encabezado();
+
+        while (aux != null) {
+            codigo = aux.codigo;
+            nombre = aux.nombre;
+            sueldo = aux.sueldo;
+            num++;
+
+            String numera = String.valueOf(num);
+
+            //modificando el tamaño de la cadena codigo  con espacios en blanco a la izquierda
+            for (int i = String.valueOf(num).length(); i < 5; i++) {
+                numera = " " + numera;
+            }
+
+            //modificando el tamaño de la cadena codigo con espacios en blanco a la derecha
+            for (int i = codigo.length(); i < 12; i++) {
+                codigo = codigo + " ";
+            }
+
+            //modificando el tamaño de la cadena nombre con espacios en blanco a la derecha
+            for (int i = nombre.length(); i < 28; i++) {
+                nombre = nombre + " ";
+            }
+
+            //le damos formato al sueldo solo con dos decimales
+            DecimalFormat df2 = new DecimalFormat("####.00");
+            sueldo = df2.format(Double.valueOf(sueldo));
+
+            //modificamos el tamaño de la cadena sueldo con espacios a la izquierda
+            for (int i = sueldo.length(); i < 12; i++) {
+                sueldo = " " + sueldo;
+            }
+
+            //colocando la informacion en el text area
+            txtReporte.append(numera + "  " + codigo + nombre + sueldo + "\n");
+            aux = aux.siguiente;
+        }
     }
 
     @SuppressWarnings("unchecked")
