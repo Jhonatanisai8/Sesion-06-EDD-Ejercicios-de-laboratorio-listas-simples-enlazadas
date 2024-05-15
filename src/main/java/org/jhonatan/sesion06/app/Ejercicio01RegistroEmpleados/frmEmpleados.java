@@ -2,6 +2,7 @@ package org.jhonatan.sesion06.app.Ejercicio01RegistroEmpleados;
 
 import java.awt.Font;
 import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -238,6 +239,11 @@ public class frmEmpleados extends javax.swing.JFrame {
         });
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         btnRestaurar.setText("Restaurar");
         btnRestaurar.setToolTipText("");
@@ -381,6 +387,25 @@ public class frmEmpleados extends javax.swing.JFrame {
         desabilitar();
         verDatos();
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+
+        String cod = txtCodigo.getText();
+        if (cod.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un codigo", "ATENCIÓN", 3);
+        } else {
+            //llamada a la funcion que retorna la posicion del dato buscado
+            pFound = buscar(ini, cod);
+            //verificar el puntero pfound para mostrar la informacion buscada
+            if (pFound != null) {
+                txtNombre.setText(pFound.nombre);
+                txtSueldo.setText(pFound.sueldo);
+                habilitar();
+            } else {
+                JOptionPane.showMessageDialog(null, "El codigo: " + cod + ", no esta en la lista", "ATENCIÓN", 3);
+            }
+        }
+    }//GEN-LAST:event_btnConsultarActionPerformed
 
     /**
      * @param args the command line arguments
