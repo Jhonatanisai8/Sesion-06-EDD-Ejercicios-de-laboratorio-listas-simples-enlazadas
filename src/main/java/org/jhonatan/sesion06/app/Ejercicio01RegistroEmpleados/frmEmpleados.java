@@ -122,6 +122,22 @@ public class frmEmpleados extends javax.swing.JFrame {
         return inicio;
     }
 
+    void eliminar(Nodo actual) {
+        //creando un puntero al nodo anterior del actual
+        Nodo anterior = ini;
+        //1. buscando el nodo anterior
+        while (anterior.siguiente != actual && anterior.siguiente != null) {
+            //2. elimina el nodo si existe
+            if (actual != null) {
+                if (anterior == actual) {
+                    ini = actual.siguiente;
+                } else {
+                    anterior.siguiente = actual.siguiente;
+                }
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
