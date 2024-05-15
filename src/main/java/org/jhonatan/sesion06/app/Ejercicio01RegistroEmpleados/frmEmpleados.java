@@ -247,6 +247,11 @@ public class frmEmpleados extends javax.swing.JFrame {
         btnEliminar.setText("Eliminar");
 
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -365,6 +370,17 @@ public class frmEmpleados extends javax.swing.JFrame {
         //mostramos los datos
         verDatos();
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+
+        pFound.codigo = txtCodigo.getText();
+        pFound.nombre = txtNombre.getText();
+        pFound.sueldo = txtSueldo.getText();
+
+        limpiarEntradas();
+        desabilitar();
+        verDatos();
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
      * @param args the command line arguments
