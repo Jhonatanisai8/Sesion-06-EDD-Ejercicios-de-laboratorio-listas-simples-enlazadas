@@ -1,20 +1,44 @@
 package org.jhonatan.sesion06.app.EjercicioPropuesto;
-
-import java.awt.Font;
-
 public class frmRegistro extends javax.swing.JFrame {
+
+    ListaEmpleados listaEmpleados = new ListaEmpleados();
 
     public frmRegistro() {
         initComponents();
         this.setTitle("Bienvenido al sistema");
     }
 
-    void encabezado() {
-        txtReporte.setFont(new Font("monospaced", Font.PLAIN, 12));
-        txtReporte.setText("");
-        txtReporte.append("");
-        txtReporte.append("     Código      Nombre y Apellido       Tipo de Contrato        Sueldo      Mont. Movilidad     Minutos tardanza\n");
-        txtReporte.append("-------------------------------------------------------------------------------------------------------------------\n");
+    public void registrarEmpleado() {
+        int codigo;
+        String nombre;
+        String tipoContrato;
+        float sueldo;
+        float montoMovilidad;
+        int minutosTardanza;
+
+        codigo = Integer.parseInt(txtCodigo.getText());
+        nombre = txtNombre.getText();
+        tipoContrato = cbxTipoContrato.getSelectedItem().toString();
+        sueldo = Float.parseFloat(txtSueldo.getText());
+        montoMovilidad = Float.parseFloat(txtMontoMovilidad.getText());
+        minutosTardanza = Integer.parseInt(txtMinTardarza.getText());
+
+        //creamos el empleado
+        Empleado empleado = new Empleado(codigo, nombre, tipoContrato, sueldo, montoMovilidad, minutosTardanza);
+        listaEmpleados.agregarInicio(empleado);
+        listaEmpleados.mostrarLista(txtReporte);
+        limpiarCampos();
+    }
+
+    public void limpiarCampos() {
+        String m = "";
+        txtCodigo.setText(m);
+        txtMinTardarza.setText(m);
+        txtMontoMovilidad.setText(m);
+        txtNombre.setText(m);
+        txtSueldo.setText(m);
+        cbxTipoContrato.setSelectedIndex(0);
+        txtCodigo.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -29,7 +53,7 @@ public class frmRegistro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        cbxPlazo = new javax.swing.JComboBox<>();
+        cbxTipoContrato = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txtSueldo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -64,7 +88,7 @@ public class frmRegistro extends javax.swing.JFrame {
 
         jLabel4.setText("Tipo Contrato:");
 
-        cbxPlazo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Plazo Fijo", "Servicios no Personales", "Service" }));
+        cbxTipoContrato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Plazo Fijo", "Servicios no Personales", "Service" }));
 
         jLabel5.setText("Sueldo:");
 
@@ -96,7 +120,7 @@ public class frmRegistro extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(cbxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cbxTipoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 94, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,7 +154,7 @@ public class frmRegistro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(cbxPlazo))
+                    .addComponent(cbxTipoContrato))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -139,6 +163,11 @@ public class frmRegistro extends javax.swing.JFrame {
         );
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnConsultar.setText("Consultar");
 
@@ -239,8 +268,12 @@ public class frmRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        encabezado();
+        listaEmpleados.encabezado(txtReporte);
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        registrarEmpleado();
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -279,7 +312,7 @@ public class frmRegistro extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JComboBox<String> cbxPlazo;
+    private javax.swing.JComboBox<String> cbxTipoContrato;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
