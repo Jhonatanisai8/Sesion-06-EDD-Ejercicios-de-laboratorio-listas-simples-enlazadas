@@ -9,31 +9,31 @@ import javax.swing.JOptionPane;
  * @author Jhonatan
  */
 public class frmEmpleados extends javax.swing.JFrame {
-
+    
     public class Nodo {
-
+        
         String codigo;
         String nombre;
         String sueldo;
         Nodo siguiente;
-
+        
         public Nodo(String codigo, String nombre, String sueldo) {
             this.codigo = codigo;
             this.nombre = nombre;
             this.sueldo = sueldo;
         }
-
+        
     }
     public Nodo ini, fin;
     public Nodo pFound;
-
+    
     int num = 0;
-
+    
     public frmEmpleados() {
         initComponents();
         this.setTitle("Bienvenido al sistema");
     }
-
+    
     void encabezado() {
         txtReporte.setFont(new Font("monospaced", Font.PLAIN, 12));
         txtReporte.setText("");
@@ -41,26 +41,26 @@ public class frmEmpleados extends javax.swing.JFrame {
         txtReporte.append("     N       CODIGO      NOMBRES Y APELLIDOS     SUELDOS\n");
         txtReporte.append("-----------------------------------------------------\n");
     }
-
+    
     void habilitar() {
         btnActualizar.setEnabled(true);
         btnEliminar.setEnabled(true);
         btnGuardar.setEnabled(false);
     }
-
+    
     void desabilitar() {
         btnActualizar.setEnabled(false);
         btnEliminar.setEnabled(false);
         btnGuardar.setEnabled(true);
     }
-
+    
     void limpiarEntradas() {
         txtCodigo.setText(null);
         txtNombre.setText(null);
         txtSueldo.setText(null);
         txtCodigo.requestFocus();
     }
-
+    
     void verDatos() {
         String codigo, nombre, sueldo;
         Nodo aux = ini;
@@ -75,7 +75,7 @@ public class frmEmpleados extends javax.swing.JFrame {
             nombre = aux.nombre;
             sueldo = aux.sueldo;
             num++;
-
+            
             String numera = String.valueOf(num);
 
             //modificando el tamaño de la cadena codigo  con espacios en blanco a la izquierda
@@ -107,7 +107,7 @@ public class frmEmpleados extends javax.swing.JFrame {
             aux = aux.siguiente;
         }
     }
-
+    
     Nodo buscar(Nodo inicio, String cod) {
         Nodo pos = inicio;
         while (pos != null && !cod.equalsIgnoreCase(pos.codigo)) {
@@ -115,30 +115,32 @@ public class frmEmpleados extends javax.swing.JFrame {
         }
         return pos;
     }
-
+    
     Nodo insertarInicio(Nodo inicio, String codi, String nom, String suel) {
         Nodo nuevo = new Nodo(codi, nom, suel);
         nuevo.siguiente = inicio;
         inicio = nuevo;
         return inicio;
     }
-
+    
     void eliminar(Nodo actual) {
         //creando un puntero al nodo anterior del actual
         Nodo anterior = ini;
         //1. buscando el nodo anterior
         while (anterior.siguiente != actual && anterior.siguiente != null) {
             //2. elimina el nodo si existe
-            if (actual != null) {
-                if (anterior == actual) {
-                    ini = actual.siguiente;
-                } else {
-                    anterior.siguiente = actual.siguiente;
-                }
+            anterior = anterior.siguiente;
+        }
+        
+        if (actual != null) {
+            if (anterior == actual) {
+                ini = actual.siguiente;
+            } else {
+                anterior.siguiente = actual.siguiente;
             }
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -259,6 +261,11 @@ public class frmEmpleados extends javax.swing.JFrame {
         });
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -393,18 +400,18 @@ public class frmEmpleados extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-
+        
         pFound.codigo = txtCodigo.getText();
         pFound.nombre = txtNombre.getText();
         pFound.sueldo = txtSueldo.getText();
-
+        
         limpiarEntradas();
         desabilitar();
         verDatos();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-
+        
         String cod = txtCodigo.getText();
         if (cod.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese un codigo", "ATENCIÓN", 3);
@@ -423,7 +430,7 @@ public class frmEmpleados extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
+        
         eliminar(pFound);
         limpiarEntradas();
         verDatos();
@@ -431,7 +438,6 @@ public class frmEmpleados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "la lista esta vacia", "ATENCIÓN", 3);
             desabilitar();
         }
-
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
@@ -443,6 +449,10 @@ public class frmEmpleados extends javax.swing.JFrame {
         encabezado();
         desabilitar();
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
