@@ -1,5 +1,8 @@
 package org.jhonatan.sesion06.app.EjercicioPropuesto;
 
+import java.awt.Font;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author Jhonatan
@@ -63,5 +66,25 @@ public class ListaEmpleados {
         return encontrado;
     }
 
-    
+    void encabezado(JTextArea txtReporte) {
+        txtReporte.setFont(new Font("monospaced", Font.PLAIN, 12));
+        txtReporte.setText("");
+        txtReporte.append("");
+        txtReporte.append("     Código      Nombre y Apellido       Tipo de Contrato        Sueldo      Mont. Movilidad     Minutos tardanza\n");
+        txtReporte.append("-------------------------------------------------------------------------------------------------------------------\n");
+    }
+
+    public void mostrarLista(JTextArea txtReporte) {
+        encabezado(txtReporte);
+        String mensaje = "";
+        //creamos un nodo auxiliar para recorrer la lista
+        Nodo recorrer = inicio;
+        while (recorrer != null) {
+            mensaje += recorrer.getEmpleado().verDetalle();
+            recorrer = recorrer.siguiente;
+        }
+        txtReporte.append(mensaje + "\n");
+
+    }
+
 }
