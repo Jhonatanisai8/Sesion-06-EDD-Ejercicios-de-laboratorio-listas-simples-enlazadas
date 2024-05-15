@@ -82,4 +82,8 @@ public class Empleado {
         this.minutosTardanza = minutosTardanza;
     }
 
+    public String verDetalle() {
+        return codigo + "      " + nombre + "       " + tipoContrato + "       " + sueldo + "       " + asigancionPorMovilidad + "       " + minutosTardanza + "\n";
+    }
+
 }
