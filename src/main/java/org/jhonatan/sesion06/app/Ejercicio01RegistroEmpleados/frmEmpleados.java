@@ -164,6 +164,11 @@ public class frmEmpleados extends javax.swing.JFrame {
         txtReporte = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -247,6 +252,11 @@ public class frmEmpleados extends javax.swing.JFrame {
 
         btnRestaurar.setText("Restaurar");
         btnRestaurar.setToolTipText("");
+        btnRestaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaurarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
 
@@ -423,6 +433,16 @@ public class frmEmpleados extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
+        limpiarEntradas();
+        desabilitar();
+    }//GEN-LAST:event_btnRestaurarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        encabezado();
+        desabilitar();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
