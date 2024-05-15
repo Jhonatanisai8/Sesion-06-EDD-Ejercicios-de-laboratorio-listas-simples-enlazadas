@@ -1,4 +1,7 @@
 package org.jhonatan.sesion06.app.EjercicioPropuesto;
+
+import javax.swing.JOptionPane;
+
 public class frmRegistro extends javax.swing.JFrame {
 
     ListaEmpleados listaEmpleados = new ListaEmpleados();
@@ -39,6 +42,27 @@ public class frmRegistro extends javax.swing.JFrame {
         txtSueldo.setText(m);
         cbxTipoContrato.setSelectedIndex(0);
         txtCodigo.requestFocus();
+    }
+
+    public void eliminarRegistro() {
+        String nombre;
+        if (listaEmpleados.estaVacia()) {
+            JOptionPane.showMessageDialog(null, "La lista esta vacia", "ATENCIÓN", 3);
+        } else {
+            if (txtNombre.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Ingresar el nombre a buscar", "ATENCIÓN", 3);
+            } else {
+                nombre = txtNombre.getText();
+                if (listaEmpleados.eliminarEmpleadoEspecifico(nombre)) {
+                    JOptionPane.showMessageDialog(rootPane, "Empleado con nombre: " + nombre + " eliminado", "ATENCIÓN", 3);
+                    listaEmpleados.mostrarLista(txtReporte);
+                    limpiarCampos();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Empleado con nombre: " + nombre + " no encontrado", "ATENCIÓN", 3);
+                }
+            }
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -170,8 +194,18 @@ public class frmRegistro extends javax.swing.JFrame {
         });
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -274,6 +308,14 @@ public class frmRegistro extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         registrarEmpleado();
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        eliminarRegistro();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
