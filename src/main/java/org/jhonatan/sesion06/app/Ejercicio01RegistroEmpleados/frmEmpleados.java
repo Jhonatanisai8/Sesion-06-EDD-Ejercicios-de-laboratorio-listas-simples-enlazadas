@@ -8,12 +8,6 @@ import java.awt.Font;
  */
 public class frmEmpleados extends javax.swing.JFrame {
 
-    public frmEmpleados() {
-        initComponents();
-        this.setTitle("Bienvenido al sistema");
-        encabezado();
-    }
-
     public class Nodo {
 
         String codigo;
@@ -27,11 +21,16 @@ public class frmEmpleados extends javax.swing.JFrame {
             this.sueldo = sueldo;
         }
 
-        public Nodo inicio, fin;
-        public Nodo pFound;
+    }
+    public Nodo inicio, fin;
+    public Nodo pFound;
 
-        int num = 0;
+    int num = 0;
 
+    public frmEmpleados() {
+        initComponents();
+        this.setTitle("Bienvenido al sistema");
+        encabezado();
     }
 
     void encabezado() {
@@ -60,6 +59,11 @@ public class frmEmpleados extends javax.swing.JFrame {
         txtNombre.setText(null);
         txtSueldo.setText(null);
         txtCodigo.requestFocus();
+    }
+
+    void verDatos() {
+        String codigo, nombre, sueldo;
+        Nodo aux = inicio;
     }
 
     @SuppressWarnings("unchecked")
