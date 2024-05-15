@@ -1,5 +1,7 @@
 package org.jhonatan.sesion06.app.Ejercicio01RegistroEmpleados;
 
+import java.awt.Font;
+
 /**
  *
  * @author Jhonatan
@@ -9,6 +11,7 @@ public class frmEmpleados extends javax.swing.JFrame {
     public frmEmpleados() {
         initComponents();
         this.setTitle("Bienvenido al sistema");
+        encabezado();
     }
 
     public class Nodo {
@@ -31,6 +34,34 @@ public class frmEmpleados extends javax.swing.JFrame {
 
     }
 
+    void encabezado() {
+        txtReporte.setFont(new Font("monospaced", Font.PLAIN, 12) {
+        });
+        txtReporte.setText("");
+        txtReporte.append("");
+        txtReporte.append("             N           CODIGO           NOMBRES Y APELLIDOS              SUELDOS\n");
+        txtReporte.append("-----------------------------------------------------\n");
+    }
+
+    void habilitar() {
+        btnActualizar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+        btnGuardar.setEnabled(false);
+    }
+
+    void desabilitar() {
+        btnActualizar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        btnGuardar.setEnabled(true);
+    }
+
+    void limpiarEntradas() {
+        txtCodigo.setText(null);
+        txtNombre.setText(null);
+        txtSueldo.setText(null);
+        txtCodigo.requestFocus();
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,19 +72,19 @@ public class frmEmpleados extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtCodigo1 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtCodigo2 = new javax.swing.JTextField();
+        txtSueldo = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
+        btnRestaurar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtReporte = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,12 +104,12 @@ public class frmEmpleados extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("SimHei", 0, 15)); // NOI18N
         jLabel3.setText("Nombre:");
 
-        txtCodigo1.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 15)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 15)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("SimHei", 0, 15)); // NOI18N
         jLabel4.setText("Sueldo:");
 
-        txtCodigo2.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 15)); // NOI18N
+        txtSueldo.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 15)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -97,12 +128,12 @@ public class frmEmpleados extends javax.swing.JFrame {
                         .addGap(38, 38, 38)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtCodigo2, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                        .addComponent(txtSueldo, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                         .addGap(85, 85, 85))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtCodigo)
                         .addGap(117, 117, 117))
-                    .addComponent(txtCodigo1))
+                    .addComponent(txtNombre))
                 .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
@@ -115,26 +146,26 @@ public class frmEmpleados extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigo2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Guardar");
+        btnGuardar.setText("Guardar");
 
-        jButton2.setText("Consultar");
+        btnConsultar.setText("Consultar");
 
-        jButton3.setText("Restaurar");
-        jButton3.setToolTipText("");
+        btnRestaurar.setText("Restaurar");
+        btnRestaurar.setToolTipText("");
 
-        jButton4.setText("Salir");
+        btnSalir.setText("Salir");
 
-        jButton5.setText("Eliminar");
+        btnEliminar.setText("Eliminar");
 
-        jButton6.setText("Actualizar");
+        btnActualizar.setText("Actualizar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -143,14 +174,14 @@ public class frmEmpleados extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRestaurar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(40, 40, 40))
         );
         jPanel3Layout.setVerticalGroup(
@@ -159,23 +190,23 @@ public class frmEmpleados extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnRestaurar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtReporte.setColumns(20);
+        txtReporte.setRows(5);
+        jScrollPane1.setViewportView(txtReporte);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -273,12 +304,12 @@ public class frmEmpleados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnRestaurar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -288,9 +319,9 @@ public class frmEmpleados extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtCodigo1;
-    private javax.swing.JTextField txtCodigo2;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextArea txtReporte;
+    private javax.swing.JTextField txtSueldo;
     // End of variables declaration//GEN-END:variables
 }
