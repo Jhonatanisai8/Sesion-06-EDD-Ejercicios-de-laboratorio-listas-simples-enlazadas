@@ -23,7 +23,7 @@ public class frmEmpleados extends javax.swing.JFrame {
         }
 
     }
-    public Nodo inicio, fin;
+    public Nodo ini, fin;
     public Nodo pFound;
 
     int num = 0;
@@ -64,7 +64,7 @@ public class frmEmpleados extends javax.swing.JFrame {
 
     void verDatos() {
         String codigo, nombre, sueldo;
-        Nodo aux = inicio;
+        Nodo aux = ini;
         num = 0;
 
         //llamando al metodo del encabezado 
@@ -106,6 +106,20 @@ public class frmEmpleados extends javax.swing.JFrame {
             txtReporte.append(numera + "  " + codigo + nombre + sueldo + "\n");
             aux = aux.siguiente;
         }
+    }
+
+    Nodo buscar(Nodo inicio, String cod) {
+        Nodo pos = inicio;
+        while (pos != null && !cod.equalsIgnoreCase(pos.codigo)) {
+            pos = pos.siguiente;
+        }
+        return pos;
+    }
+
+    Nodo insertarInicio(Nodo inicio, String codi, String nom, String suel) {
+        Nodo nuevo = new Nodo(codi, nom, suel);
+        nuevo.siguiente = inicio;
+        return inicio;
     }
 
     @SuppressWarnings("unchecked")
