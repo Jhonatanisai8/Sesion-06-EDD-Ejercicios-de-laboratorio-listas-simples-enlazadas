@@ -251,6 +251,11 @@ public class frmEmpleados extends javax.swing.JFrame {
         btnSalir.setText("Salir");
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -406,6 +411,18 @@ public class frmEmpleados extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
+        eliminar(pFound);
+        limpiarEntradas();
+        verDatos();
+        if (ini == null) {
+            JOptionPane.showMessageDialog(null, "la lista esta vacia", "ATENCIÓN", 3);
+            desabilitar();
+        }
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
