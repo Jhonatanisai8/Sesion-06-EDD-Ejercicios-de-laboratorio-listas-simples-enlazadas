@@ -31,15 +31,13 @@ public class frmEmpleados extends javax.swing.JFrame {
     public frmEmpleados() {
         initComponents();
         this.setTitle("Bienvenido al sistema");
-        encabezado();
     }
 
     void encabezado() {
-        txtReporte.setFont(new Font("monospaced", Font.PLAIN, 12) {
-        });
+        txtReporte.setFont(new Font("monospaced", Font.PLAIN, 12));
         txtReporte.setText("");
         txtReporte.append("");
-        txtReporte.append("             N           CODIGO           NOMBRES Y APELLIDOS              SUELDOS\n");
+        txtReporte.append("     N       CODIGO      NOMBRES Y APELLIDOS     SUELDOS\n");
         txtReporte.append("-----------------------------------------------------\n");
     }
 
@@ -70,6 +68,7 @@ public class frmEmpleados extends javax.swing.JFrame {
         //llamando al metodo del encabezado 
         encabezado();
 
+        //recorriendo la lista
         while (aux != null) {
             codigo = aux.codigo;
             nombre = aux.nombre;
@@ -119,6 +118,7 @@ public class frmEmpleados extends javax.swing.JFrame {
     Nodo insertarInicio(Nodo inicio, String codi, String nom, String suel) {
         Nodo nuevo = new Nodo(codi, nom, suel);
         nuevo.siguiente = inicio;
+        inicio = nuevo;
         return inicio;
     }
 
@@ -231,6 +231,11 @@ public class frmEmpleados extends javax.swing.JFrame {
         );
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnConsultar.setText("Consultar");
 
@@ -343,6 +348,23 @@ public class frmEmpleados extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+
+        //capturando la informacion de los objetos
+        String cod = txtCodigo.getText();
+        String nomb = txtNombre.getText();
+        String suel = txtSueldo.getText();
+
+        /*
+        Creando el nodo de la lista en memoria
+        y colocando la informacion
+         */
+        ini = insertarInicio(ini, cod, nomb, suel);
+        limpiarEntradas();
+        //mostramos los datos
+        verDatos();
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
