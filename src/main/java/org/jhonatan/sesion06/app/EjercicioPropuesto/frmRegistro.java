@@ -65,6 +65,29 @@ public class frmRegistro extends javax.swing.JFrame {
 
     }
 
+    public void buscarEmpleado() {
+        if (listaEmpleados.estaVacia()) {
+            JOptionPane.showMessageDialog(rootPane, "LISTA VACIA", "ATENCION", 3);
+        } else {
+            if (txtCodigo.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Ingrese el codigo a buscar", "ATENCION", 3);
+            } else {
+                int codigo = Integer.parseInt(txtCodigo.getText());
+                Nodo aux = listaEmpleados.buscarNodo(codigo);
+                if (aux != null) {
+                    txtCodigo.setText(aux.getEmpleado().getCodigo() + "");
+                    txtMinTardarza.setText(aux.getEmpleado().getMinutosTardanza() + "");
+                    txtMontoMovilidad.setText(aux.getEmpleado().getAsigancionPorMovilidad() + "");
+                    txtNombre.setText(aux.getEmpleado().getNombre());
+                    txtSueldo.setText(aux.getEmpleado().getSueldo() + "");
+                    cbxTipoContrato.setSelectedItem(aux.getEmpleado().getTipoContrato());
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Empleado con el ID: " + codigo + ", no encontrado", "ATENCIÓN", 3);
+                }
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -314,7 +337,7 @@ public class frmRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        // TODO add your handling code here:
+        buscarEmpleado();
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     public static void main(String args[]) {
