@@ -3,14 +3,14 @@ package org.jhonatan.sesion06.app.EjercicioPropuesto;
 import javax.swing.JOptionPane;
 
 public class frmRegistro extends javax.swing.JFrame {
-    
+
     ListaEmpleados listaEmpleados = new ListaEmpleados();
-    
+
     public frmRegistro() {
         initComponents();
         this.setTitle("Bienvenido al sistema");
     }
-    
+
     public void registrarEmpleado() {
         int codigo;
         String nombre;
@@ -18,7 +18,7 @@ public class frmRegistro extends javax.swing.JFrame {
         float sueldo;
         float montoMovilidad;
         int minutosTardanza;
-        
+
         codigo = Integer.parseInt(txtCodigo.getText());
         nombre = txtNombre.getText();
         tipoContrato = cbxTipoContrato.getSelectedItem().toString();
@@ -32,10 +32,21 @@ public class frmRegistro extends javax.swing.JFrame {
         listaEmpleados.mostrarLista(txtReporte);
         //mostramos el numero de empleados con mas de 15 minutos de tardanzas
         txtEmpleadosconmas15.setText(listaEmpleados.empleadosConMasde15Tardanzas() + "");
-        txtMayorEmpleadoTardanzas.setText(listaEmpleados.empleadoMayorTardanzas());
+
+        //llamos al mtodo que nos permite saber el nombre del empleado con mayor tiempo de tardanza
+        nombreEmpleadoMayorTardanza();
         limpiarCampos();
     }
-    
+
+    public void nombreEmpleadoMayorTardanza() {
+        Nodo aux = listaEmpleados.empleadoMayorTardanzas();
+        String nombre = "";
+        if (aux != null) {
+            nombre = aux.getEmpleado().getNombre();
+        }
+        txtNombreEmpleadoMaypr.setText(nombre);
+    }
+
     public void limpiarCampos() {
         String m = "";
         txtCodigo.setText(m);
@@ -46,7 +57,7 @@ public class frmRegistro extends javax.swing.JFrame {
         cbxTipoContrato.setSelectedIndex(0);
         txtCodigo.requestFocus();
     }
-    
+
     public void eliminarRegistro() {
         String nombre;
         if (listaEmpleados.estaVacia()) {
@@ -65,9 +76,9 @@ public class frmRegistro extends javax.swing.JFrame {
                 }
             }
         }
-        
+
     }
-    
+
     public void buscarEmpleado() {
         if (listaEmpleados.estaVacia()) {
             JOptionPane.showMessageDialog(rootPane, "LISTA VACIA", "ATENCION", 3);
@@ -79,7 +90,6 @@ public class frmRegistro extends javax.swing.JFrame {
                 Nodo aux = listaEmpleados.buscarNodo(codigo);
                 if (aux != null) {
                     txtCodigo.setText(aux.getEmpleado().getCodigo() + "");
-                    
                     txtMinTardarza.setText(aux.getEmpleado().getMinutosTardanza() + "");
                     txtMontoMovilidad.setText(aux.getEmpleado().getAsigancionPorMovilidad() + "");
                     txtNombre.setText(aux.getEmpleado().getNombre());
@@ -91,7 +101,7 @@ public class frmRegistro extends javax.swing.JFrame {
             }
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -121,7 +131,7 @@ public class frmRegistro extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtMayorEmpleadoTardanzas = new javax.swing.JTextField();
+        txtNombreEmpleadoMaypr = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtMayorMontoMovilidad = new javax.swing.JTextField();
         txtEmpleadosconmas15 = new javax.swing.JTextField();
@@ -170,7 +180,7 @@ public class frmRegistro extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                         .addGap(42, 42, 42))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -183,7 +193,7 @@ public class frmRegistro extends javax.swing.JFrame {
                         .addComponent(txtSueldo)
                         .addGap(485, 485, 485))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(cbxTipoContrato, 0, 213, Short.MAX_VALUE)
+                        .addComponent(cbxTipoContrato, 0, 210, Short.MAX_VALUE)
                         .addGap(399, 399, 399))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,7 +313,7 @@ public class frmRegistro extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel8.setText("Emp. con mas de 15 min de tardanza:");
+        jLabel8.setText("Nº de Empledos con mas de 15 min de tardanza:");
 
         jLabel9.setText("Empleado con mas tiempo de tardanza:");
 
@@ -317,6 +327,9 @@ public class frmRegistro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtMayorMontoMovilidad))
@@ -324,11 +337,8 @@ public class frmRegistro extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtMayorEmpleadoTardanzas))
+                            .addComponent(txtNombreEmpleadoMaypr))
                         .addGap(3, 3, 3))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(75, 75, 75))
                     .addComponent(txtEmpleadosconmas15)))
         );
         jPanel5Layout.setVerticalGroup(
@@ -341,7 +351,7 @@ public class frmRegistro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtMayorEmpleadoTardanzas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombreEmpleadoMaypr, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -424,7 +434,7 @@ public class frmRegistro extends javax.swing.JFrame {
     private void cbxTipoContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoContratoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxTipoContratoActionPerformed
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -481,11 +491,11 @@ public class frmRegistro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtEmpleadosconmas15;
-    private javax.swing.JTextField txtMayorEmpleadoTardanzas;
     private javax.swing.JTextField txtMayorMontoMovilidad;
     private javax.swing.JTextField txtMinTardarza;
     private javax.swing.JTextField txtMontoMovilidad;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombreEmpleadoMaypr;
     private javax.swing.JTextArea txtReporte;
     private javax.swing.JTextField txtSueldo;
     // End of variables declaration//GEN-END:variables
