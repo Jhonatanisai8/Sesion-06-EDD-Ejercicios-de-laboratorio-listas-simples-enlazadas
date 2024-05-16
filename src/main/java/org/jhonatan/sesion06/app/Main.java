@@ -8,7 +8,6 @@ import org.jhonatan.sesion06.app.EjercicioPropuesto.frmRegistro;
  * @author Jhonatan
  */
 public class Main {
-
     /*
     Ejercicio 01:
     Construya una aplicación que permita realizar el registro de empleados
