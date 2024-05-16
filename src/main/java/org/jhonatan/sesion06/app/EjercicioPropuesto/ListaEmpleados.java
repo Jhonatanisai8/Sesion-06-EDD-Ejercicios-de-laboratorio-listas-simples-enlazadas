@@ -94,6 +94,23 @@ public class ListaEmpleados {
         return pos;
     }
 
+    /*Nombre del empleado con el mayor tiempo de tardanzas 
+    y que tenga un tipo de contrato por Services.*/
+    public Nodo empleadoMayorTardanzas() {
+        Nodo pos = inicio;
+        Nodo posicion = null;
+        int mayor = -1;
+        while (pos != null) {
+            if (pos.getEmpleado().getTipoContrato().equalsIgnoreCase("Services")
+                    && pos.getEmpleado().getMinutosTardanza() > mayor) {
+                mayor = pos.getEmpleado().getMinutosTardanza();
+                posicion = pos;
+            }
+            pos = pos.siguiente;
+        }
+        return posicion;
+    }
+
     //Número de empleados con más de una 15 minutos de tardanzas.
     public int empleadosConMasde15Tardanzas() {
         int contador = 0;
@@ -105,20 +122,6 @@ public class ListaEmpleados {
             recorrer = recorrer.siguiente;
         }
         return contador;
-    }
-
-    /*Nombre del empleado con el mayor tiempo de tardanzas 
-    y que tenga un tipo de contrato por Services.*/
-    public String empleadoMayorTardanzas() {
-        int empleadoMayor = inicio.getEmpleado().getMinutosTardanza();
-        Nodo pos = inicio;
-        while (pos != null) {
-            if (pos.getEmpleado().getMinutosTardanza() > empleadoMayor) {
-                empleadoMayor = pos.getEmpleado().getMinutosTardanza();
-            }
-            pos = pos.siguiente;
-        }
-        return pos.getEmpleado().getNombre();
     }
 
 }
