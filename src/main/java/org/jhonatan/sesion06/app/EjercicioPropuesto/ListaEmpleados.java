@@ -84,7 +84,14 @@ public class ListaEmpleados {
             recorrer = recorrer.siguiente;
         }
         txtReporte.append(mensaje + "\n");
+    }
 
+    public Nodo buscarNodo(int codigo) {
+        Nodo pos = inicio;
+        while (pos != null && pos.getEmpleado().getCodigo() != codigo) {
+            pos = pos.siguiente;
+        }
+        return pos;
     }
 
 }
