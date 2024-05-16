@@ -1,6 +1,7 @@
 package org.jhonatan.sesion06.app;
 
 import org.jhonatan.sesion06.app.Ejercicio01RegistroEmpleados.frmEmpleados;
+import org.jhonatan.sesion06.app.EjercicioPropuesto.frmRegistro;
 
 /**
  *
@@ -17,11 +18,17 @@ public class Main {
      */
     public static void main(String[] args) {
         System.out.println("Hola Java!");
-        ejercicioEmpleados();
+        //ejercicioEmpleados();
+        ejercicioPropuesto();
     }
 
     public static void ejercicioEmpleados() {
         frmEmpleados ventana = new frmEmpleados();
         ventana.setVisible(true);
+    }
+
+    public static void ejercicioPropuesto() {
+        frmRegistro O = new frmRegistro();
+        O.setVisible(true);
     }
 }
