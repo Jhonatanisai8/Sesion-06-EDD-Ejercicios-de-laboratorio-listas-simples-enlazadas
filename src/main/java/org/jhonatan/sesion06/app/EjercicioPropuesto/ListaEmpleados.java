@@ -105,7 +105,20 @@ public class ListaEmpleados {
             recorrer = recorrer.siguiente;
         }
         return contador;
+    }
 
+    /*Nombre del empleado con el mayor tiempo de tardanzas 
+    y que tenga un tipo de contrato por Services.*/
+    public String empleadoMayorTardanzas() {
+        int empleadoMayor = inicio.getEmpleado().getMinutosTardanza();
+        Nodo pos = inicio;
+        while (pos != null) {
+            if (pos.getEmpleado().getMinutosTardanza() > empleadoMayor) {
+                empleadoMayor = pos.getEmpleado().getMinutosTardanza();
+            }
+            pos = pos.siguiente;
+        }
+        return pos.getEmpleado().getNombre();
     }
 
 }
