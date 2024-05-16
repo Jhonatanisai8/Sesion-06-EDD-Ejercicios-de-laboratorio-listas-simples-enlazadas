@@ -3,14 +3,14 @@ package org.jhonatan.sesion06.app.EjercicioPropuesto;
 import javax.swing.JOptionPane;
 
 public class frmRegistro extends javax.swing.JFrame {
-
+    
     ListaEmpleados listaEmpleados = new ListaEmpleados();
-
+    
     public frmRegistro() {
         initComponents();
         this.setTitle("Bienvenido al sistema");
     }
-
+    
     public void registrarEmpleado() {
         int codigo;
         String nombre;
@@ -18,7 +18,7 @@ public class frmRegistro extends javax.swing.JFrame {
         float sueldo;
         float montoMovilidad;
         int minutosTardanza;
-
+        
         codigo = Integer.parseInt(txtCodigo.getText());
         nombre = txtNombre.getText();
         tipoContrato = cbxTipoContrato.getSelectedItem().toString();
@@ -35,9 +35,12 @@ public class frmRegistro extends javax.swing.JFrame {
 
         //llamos al mtodo que nos permite saber el nombre del empleado con mayor tiempo de tardanza
         nombreEmpleadoMayorTardanza();
+
+        //llamamos al metodo que no permite conocer el monto por movilidad con un tipo de contrado de plazo fijo mayor con un sueldo mayor a 1500
+        mayorMontoMovilidad();
         limpiarCampos();
     }
-
+    
     public void nombreEmpleadoMayorTardanza() {
         Nodo aux = listaEmpleados.empleadoMayorTardanzas();
         String nombre = "";
@@ -46,7 +49,16 @@ public class frmRegistro extends javax.swing.JFrame {
         }
         txtNombreEmpleadoMaypr.setText(nombre);
     }
-
+    
+    public void mayorMontoMovilidad() {
+        Nodo aux = listaEmpleados.mayorMontoPorMovilidad();
+        float montoMayor = 0;
+        if (aux != null) {
+            montoMayor = aux.getEmpleado().getAsigancionPorMovilidad();
+        }
+        txtMayorMontoMovilidad.setText(montoMayor + "");
+    }
+    
     public void limpiarCampos() {
         String m = "";
         txtCodigo.setText(m);
@@ -57,7 +69,7 @@ public class frmRegistro extends javax.swing.JFrame {
         cbxTipoContrato.setSelectedIndex(0);
         txtCodigo.requestFocus();
     }
-
+    
     public void eliminarRegistro() {
         String nombre;
         if (listaEmpleados.estaVacia()) {
@@ -76,9 +88,9 @@ public class frmRegistro extends javax.swing.JFrame {
                 }
             }
         }
-
+        
     }
-
+    
     public void buscarEmpleado() {
         if (listaEmpleados.estaVacia()) {
             JOptionPane.showMessageDialog(rootPane, "LISTA VACIA", "ATENCION", 3);
@@ -101,7 +113,7 @@ public class frmRegistro extends javax.swing.JFrame {
             }
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -434,7 +446,7 @@ public class frmRegistro extends javax.swing.JFrame {
     private void cbxTipoContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoContratoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxTipoContratoActionPerformed
-
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
