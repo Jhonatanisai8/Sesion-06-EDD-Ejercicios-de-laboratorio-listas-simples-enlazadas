@@ -111,6 +111,26 @@ public class ListaEmpleados {
         return posicion;
     }
 
+    /*
+      El mayor monto de movilidad asignado a un empleado con contrato a Plazo
+      Fijo con un sueldo menor a 1500 soles.
+     */
+    public Nodo mayorMontoPorMovilidad() {
+        Nodo pos = inicio;
+        Nodo posicion = null;
+        float montoMayorMovilidad = -1;
+        while (pos != null) {
+            if (pos.getEmpleado().getAsigancionPorMovilidad() > montoMayorMovilidad
+                    && pos.getEmpleado().getTipoContrato().equalsIgnoreCase("Plazo Fijo")
+                    && pos.getEmpleado().getSueldo() < 1500) {
+                montoMayorMovilidad = pos.getEmpleado().getAsigancionPorMovilidad();
+                posicion = pos;
+            }
+            pos = pos.siguiente;
+        }
+        return posicion;
+    }
+
     //Número de empleados con más de una 15 minutos de tardanzas.
     public int empleadosConMasde15Tardanzas() {
         int contador = 0;
