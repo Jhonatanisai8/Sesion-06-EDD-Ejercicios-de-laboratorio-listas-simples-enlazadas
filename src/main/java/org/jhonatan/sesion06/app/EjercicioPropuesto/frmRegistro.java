@@ -3,14 +3,14 @@ package org.jhonatan.sesion06.app.EjercicioPropuesto;
 import javax.swing.JOptionPane;
 
 public class frmRegistro extends javax.swing.JFrame {
-
+    
     ListaEmpleados listaEmpleados = new ListaEmpleados();
-
+    
     public frmRegistro() {
         initComponents();
         this.setTitle("Bienvenido al sistema");
     }
-
+    
     public void registrarEmpleado() {
         int codigo;
         String nombre;
@@ -18,7 +18,7 @@ public class frmRegistro extends javax.swing.JFrame {
         float sueldo;
         float montoMovilidad;
         int minutosTardanza;
-
+        
         codigo = Integer.parseInt(txtCodigo.getText());
         nombre = txtNombre.getText();
         tipoContrato = cbxTipoContrato.getSelectedItem().toString();
@@ -32,9 +32,10 @@ public class frmRegistro extends javax.swing.JFrame {
         listaEmpleados.mostrarLista(txtReporte);
         //mostramos el numero de empleados con mas de 15 minutos de tardanzas
         txtEmpleadosconmas15.setText(listaEmpleados.empleadosConMasde15Tardanzas() + "");
+        txtMayorEmpleadoTardanzas.setText(listaEmpleados.empleadoMayorTardanzas());
         limpiarCampos();
     }
-
+    
     public void limpiarCampos() {
         String m = "";
         txtCodigo.setText(m);
@@ -45,7 +46,7 @@ public class frmRegistro extends javax.swing.JFrame {
         cbxTipoContrato.setSelectedIndex(0);
         txtCodigo.requestFocus();
     }
-
+    
     public void eliminarRegistro() {
         String nombre;
         if (listaEmpleados.estaVacia()) {
@@ -64,9 +65,9 @@ public class frmRegistro extends javax.swing.JFrame {
                 }
             }
         }
-
+        
     }
-
+    
     public void buscarEmpleado() {
         if (listaEmpleados.estaVacia()) {
             JOptionPane.showMessageDialog(rootPane, "LISTA VACIA", "ATENCION", 3);
@@ -78,7 +79,7 @@ public class frmRegistro extends javax.swing.JFrame {
                 Nodo aux = listaEmpleados.buscarNodo(codigo);
                 if (aux != null) {
                     txtCodigo.setText(aux.getEmpleado().getCodigo() + "");
-
+                    
                     txtMinTardarza.setText(aux.getEmpleado().getMinutosTardanza() + "");
                     txtMontoMovilidad.setText(aux.getEmpleado().getAsigancionPorMovilidad() + "");
                     txtNombre.setText(aux.getEmpleado().getNombre());
@@ -90,7 +91,7 @@ public class frmRegistro extends javax.swing.JFrame {
             }
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -145,7 +146,12 @@ public class frmRegistro extends javax.swing.JFrame {
 
         jLabel4.setText("Tipo Contrato:");
 
-        cbxTipoContrato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Plazo Fijo", "Servicios no Personales", "Service" }));
+        cbxTipoContrato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Plazo Fijo", "Servicios no Personales", "Services" }));
+        cbxTipoContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTipoContratoActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Sueldo:");
 
@@ -415,6 +421,10 @@ public class frmRegistro extends javax.swing.JFrame {
         buscarEmpleado();
     }//GEN-LAST:event_btnConsultarActionPerformed
 
+    private void cbxTipoContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoContratoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxTipoContratoActionPerformed
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -223,10 +223,13 @@
                   <StringArray count="3">
                     <StringItem index="0" value="Plazo Fijo"/>
                     <StringItem index="1" value="Servicios no Personales"/>
-                    <StringItem index="2" value="Service"/>
+                    <StringItem index="2" value="Services"/>
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxTipoContratoActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
