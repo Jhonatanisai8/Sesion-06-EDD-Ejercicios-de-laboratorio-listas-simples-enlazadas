@@ -94,4 +94,18 @@ public class ListaEmpleados {
         return pos;
     }
 
+    //Número de empleados con más de una 15 minutos de tardanzas.
+    public int empleadosConMasde15Tardanzas() {
+        int contador = 0;
+        Nodo recorrer = inicio;
+        while (recorrer != null) {
+            if (recorrer.getEmpleado().getMinutosTardanza() > 15) {
+                contador++;
+            }
+            recorrer = recorrer.siguiente;
+        }
+        return contador;
+
+    }
+
 }
