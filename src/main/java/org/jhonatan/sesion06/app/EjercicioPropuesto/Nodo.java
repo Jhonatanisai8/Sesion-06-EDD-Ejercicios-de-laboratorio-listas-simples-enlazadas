@@ -18,6 +18,4 @@ public class Nodo {
     public Empleado getEmpleado() {
         return empleado;
     }
-
-    
 }

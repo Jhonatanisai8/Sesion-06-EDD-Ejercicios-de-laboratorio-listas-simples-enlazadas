@@ -7,16 +7,22 @@ import javax.swing.JTextArea;
  * @author Jhonatan
  */
 /*
-    Ejercicio:
-    Construya un programa que guarde en una lista simple enlazada, la siguiente información de los empleados 
-    de una Compañía: Código, Nombre, Tipo de Contrato (A plazo fijo, Servicios No personales y Service), 
-    sueldo, monto asignado por movilidad y minutos de tardanza y permita mostrar la siguiente información:
-    
-a)	Número de empleados con más de una 15 minutos de tardanzas.
-b)	Nombre del empleado con el mayor tiempo de tardanzas y que tenga un tipo de contrato por Services.
-c)	El mayor monto de movilidad asignado a un empleado con contrato a Plazo Fijo con un sueldo menor a 1500 soles.
-
-Su programa también tendrá la opción de consultar, actualizar y eliminar registros.
+ * Ejercicio:
+ * Construya un programa que guarde en una lista simple enlazada, la siguiente
+ * información de los empleados
+ * de una Compañía: Código, Nombre, Tipo de Contrato (A plazo fijo, Servicios No
+ * personales y Service),
+ * sueldo, monto asignado por movilidad y minutos de tardanza y permita mostrar
+ * la siguiente información:
+ * 
+ * a) Número de empleados con más de una 15 minutos de tardanzas.
+ * b) Nombre del empleado con el mayor tiempo de tardanzas y que tenga un tipo
+ * de contrato por Services.
+ * c) El mayor monto de movilidad asignado a un empleado con contrato a Plazo
+ * Fijo con un sueldo menor a 1500 soles.
+ * 
+ * Su programa también tendrá la opción de consultar, actualizar y eliminar
+ * registros.
  */
 public class Empleado {
 
@@ -27,7 +33,8 @@ public class Empleado {
     private float asigancionPorMovilidad;
     private int minutosTardanza;
 
-    public Empleado(int codigo, String nombre, String tipoContrato, float sueldo, float asigancionPorMovilidad, int minutosTardanza) {
+    public Empleado(int codigo, String nombre, String tipoContrato, float sueldo, float asigancionPorMovilidad,
+            int minutosTardanza) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.tipoContrato = tipoContrato;
@@ -82,18 +89,5 @@ public class Empleado {
 
     public void setMinutosTardanza(int minutosTardanza) {
         this.minutosTardanza = minutosTardanza;
-    }
-
-    public String verDetalle() {
-        return codigo + "      " + nombre + "       " + tipoContrato + "       " + sueldo + "       " + asigancionPorMovilidad + "       " + minutosTardanza + "\n";
-    }
-
-    public void verDetalle02(JTextArea txtReporte) {
-        int codigo;
-        String nombre;
-        String tipoContrato;
-        float sueldo;
-        float asigancionPorMovilidad;
-        int minTardanza;   
     }
 }
