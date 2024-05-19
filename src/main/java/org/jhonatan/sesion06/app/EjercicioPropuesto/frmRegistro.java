@@ -29,7 +29,7 @@ public class frmRegistro extends javax.swing.JFrame {
         //creamos el empleado
         Empleado empleado = new Empleado(codigo, nombre, tipoContrato, sueldo, montoMovilidad, minutosTardanza);
         listaEmpleados.agregarInicio(empleado);
-        listaEmpleados.mostrarLista(txtReporte);
+        listaEmpleados.mostrarDatos(txtReporte);
         //mostramos el numero de empleados con mas de 15 minutos de tardanzas
         txtEmpleadosconmas15.setText(listaEmpleados.empleadosConMasde15Tardanzas() + "");
 
@@ -81,7 +81,7 @@ public class frmRegistro extends javax.swing.JFrame {
                 nombre = txtNombre.getText();
                 if (listaEmpleados.eliminarEmpleadoEspecifico(nombre)) {
                     JOptionPane.showMessageDialog(rootPane, "Empleado con nombre: " + nombre + " eliminado", "ATENCIÓN", 3);
-                    listaEmpleados.mostrarLista(txtReporte);
+                    listaEmpleados.mostrarDatos(txtReporte);
                     limpiarCampos();
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Empleado con nombre: " + nombre + " no encontrado", "ATENCIÓN", 3);

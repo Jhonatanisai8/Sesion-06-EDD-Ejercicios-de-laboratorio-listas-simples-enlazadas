@@ -1,6 +1,7 @@
 package org.jhonatan.sesion06.app.EjercicioPropuesto;
 
 import java.awt.Font;
+import java.text.DecimalFormat;
 import javax.swing.JTextArea;
 
 /**
@@ -69,21 +70,77 @@ public class ListaEmpleados {
     void encabezado(JTextArea txtReporte) {
         txtReporte.setFont(new Font("monospaced", Font.PLAIN, 12));
         txtReporte.setText("");
-        txtReporte.append("");
-        txtReporte.append("     Código      Nombre y Apellido       Tipo de Contrato        Sueldo      Mont. Movilidad     Minutos tardanza\n");
+        txtReporte.append("     Nº        Código      Nombre y Apellido       Tipo de Contrato        Sueldo      Mont. Movilidad     Minutos tardanza\n");
         txtReporte.append("-------------------------------------------------------------------------------------------------------------------\n");
     }
 
-    public void mostrarLista(JTextArea txtReporte) {
+    public void mostrarDatos(JTextArea txtReporte) {
+        int codigo;
+        String nombre;
+        String tipoContrato;
+        float sueldo;
+        float asigancionPorMovilidad;
+        int minTardanza;
+
+        Nodo aux = inicio;
+        int numero = 0;
         encabezado(txtReporte);
-        String mensaje = "";
-        //creamos un nodo auxiliar para recorrer la lista
-        Nodo recorrer = inicio;
-        while (recorrer != null) {
-            mensaje += recorrer.getEmpleado().verDetalle();
-            recorrer = recorrer.siguiente;
+        while (aux != null) {
+            codigo = aux.getEmpleado().getCodigo();
+            nombre = aux.getEmpleado().getNombre();
+            tipoContrato = aux.getEmpleado().getTipoContrato();
+            sueldo = aux.getEmpleado().getSueldo();
+            asigancionPorMovilidad = aux.getEmpleado().getAsigancionPorMovilidad();
+            minTardanza = aux.getEmpleado().getMinutosTardanza();
+
+            // Modificamos el tamaño de la cadena del número con espacios en blanco a la derecha
+            String numera = String.valueOf(numero);
+            while (numera.length() < 5) {
+                numera = " " + numera;
+            }
+
+            // Modificamos el tamaño de la cadena del código con espacios en blanco a la derecha
+            String co = String.valueOf(codigo);
+            while (co.length() < 12) {
+                co = co + " ";
+            }
+
+            // Modificamos el tamaño de la cadena del nombre con espacios en blanco a la derecha
+            while (nombre.length() < 28) {
+                nombre = nombre + " ";
+            }
+
+            // Modificamos el tamaño de la cadena del tipo de contrato con espacios en blanco a la derecha
+            while (tipoContrato.length() < 15) {
+                tipoContrato = tipoContrato + " ";
+            }
+
+            // Formateamos y modificamos el tamaño de la cadena del sueldo con espacios en blanco a la izquierda
+            DecimalFormat df2 = new DecimalFormat("####.00");
+            String suel = df2.format(sueldo);
+            while (suel.length() < 14) {
+                suel = " " + suel;
+            }
+
+            // Formateamos y modificamos el tamaño de la cadena de la asignación por movilidad con espacios en blanco a la izquierda
+            DecimalFormat df3 = new DecimalFormat("####.00");
+            String asingMovi = df3.format(asigancionPorMovilidad);
+            while (asingMovi.length() < 14) {
+                asingMovi = " " + asingMovi;
+            }
+
+            // Modificamos el tamaño de la cadena de los minutos de tardanza con espacios en blanco a la derecha
+            String minTar = String.valueOf(minTardanza);
+            while (minTar.length() < 14) {
+                minTar = " " + minTar;
+            }
+
+            // Colocamos el reporte
+            txtReporte.append(numera + " " + co + nombre + tipoContrato + suel + asingMovi + minTar + "\n");
+
+            aux = aux.siguiente;
+            numero++;
         }
-        txtReporte.append(mensaje + "\n");
     }
 
     public Nodo buscarNodo(int codigo) {

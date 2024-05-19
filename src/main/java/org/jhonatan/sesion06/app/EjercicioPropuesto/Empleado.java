@@ -1,5 +1,7 @@
 package org.jhonatan.sesion06.app.EjercicioPropuesto;
 
+import javax.swing.JTextArea;
+
 /**
  *
  * @author Jhonatan
@@ -86,4 +88,12 @@ public class Empleado {
         return codigo + "      " + nombre + "       " + tipoContrato + "       " + sueldo + "       " + asigancionPorMovilidad + "       " + minutosTardanza + "\n";
     }
 
+    public void verDetalle02(JTextArea txtReporte) {
+        int codigo;
+        String nombre;
+        String tipoContrato;
+        float sueldo;
+        float asigancionPorMovilidad;
+        int minTardanza;   
+    }
 }
