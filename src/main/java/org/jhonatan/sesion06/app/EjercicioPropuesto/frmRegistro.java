@@ -3,15 +3,15 @@ package org.jhonatan.sesion06.app.EjercicioPropuesto;
 import javax.swing.JOptionPane;
 
 public class frmRegistro extends javax.swing.JFrame {
-
+    
     ListaEmpleados listaEmpleados = new ListaEmpleados();
     Nodo aux;
-
+    
     public frmRegistro() {
         initComponents();
         this.setTitle("Bienvenido al sistema");
     }
-
+    
     public void registrarEmpleado() {
         int codigo;
         String nombre;
@@ -19,7 +19,7 @@ public class frmRegistro extends javax.swing.JFrame {
         float sueldo;
         float montoMovilidad;
         int minutosTardanza;
-
+        
         codigo = Integer.parseInt(txtCodigo.getText());
         nombre = txtNombre.getText();
         tipoContrato = cbxTipoContrato.getSelectedItem().toString();
@@ -41,7 +41,7 @@ public class frmRegistro extends javax.swing.JFrame {
         mayorMontoMovilidad();
         limpiarCampos();
     }
-
+    
     public void nombreEmpleadoMayorTardanza() {
         Nodo aux = listaEmpleados.empleadoMayorTardanzas();
         String nombre = "";
@@ -50,7 +50,7 @@ public class frmRegistro extends javax.swing.JFrame {
         }
         txtNombreEmpleadoMaypr.setText(nombre);
     }
-
+    
     public void mayorMontoMovilidad() {
         Nodo aux = listaEmpleados.mayorMontoPorMovilidad();
         float montoMayor = 0;
@@ -59,7 +59,7 @@ public class frmRegistro extends javax.swing.JFrame {
         }
         txtMayorMontoMovilidad.setText(montoMayor + "");
     }
-
+    
     public void limpiarCampos() {
         String m = "";
         txtCodigo.setText(m);
@@ -70,7 +70,7 @@ public class frmRegistro extends javax.swing.JFrame {
         cbxTipoContrato.setSelectedIndex(0);
         txtCodigo.requestFocus();
     }
-
+    
     public void eliminarRegistro() {
         String nombre;
         if (listaEmpleados.estaVacia()) {
@@ -89,9 +89,9 @@ public class frmRegistro extends javax.swing.JFrame {
                 }
             }
         }
-
+        
     }
-
+    
     public void buscarEmpleado() {
         if (listaEmpleados.estaVacia()) {
             JOptionPane.showMessageDialog(rootPane, "LISTA VACIA", "ATENCION", 3);
@@ -114,17 +114,18 @@ public class frmRegistro extends javax.swing.JFrame {
             }
         }
     }
-
+    
     public void actualizar() {
         aux.getEmpleado().setCodigo(Integer.parseInt(txtCodigo.getText()));
         aux.getEmpleado().setNombre(txtNombre.getText());
         aux.getEmpleado().setTipoContrato(cbxTipoContrato.getSelectedItem().toString());
         aux.getEmpleado().setAsigancionPorMovilidad(Float.parseFloat(txtMontoMovilidad.getText()));
         aux.getEmpleado().setMinutosTardanza(Integer.parseInt(txtMinTardarza.getText()));
+        aux.getEmpleado().setSueldo(Float.parseFloat(txtSueldo.getText()));
         listaEmpleados.mostrarDatos(txtReporte);
         limpiarCampos();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -474,7 +475,7 @@ public class frmRegistro extends javax.swing.JFrame {
     private void btnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminar1ActionPerformed
         actualizar();
     }//GEN-LAST:event_btnEliminar1ActionPerformed
-
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
